@@ -1,26 +1,24 @@
-package com.winterchen.controller;
+package com.charging.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.winterchen.model.UserDomain;
-import com.winterchen.service.user.UserService;
+import com.charging.model.User;
+import com.charging.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Created by Administrator on 2017/8/16.
  */
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private IUserService IUserService;
 
     @ResponseBody
     @PostMapping("/add")
-    public int addUser(UserDomain user){
-        return userService.addUser(user);
+    public int addUser(User user){
+        return IUserService.addUser(user);
     }
 
     @ResponseBody
@@ -30,6 +28,6 @@ public class UserController {
                     int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
                     int pageSize){
-        return userService.findAllUser(pageNum,pageSize);
+        return IUserService.findAllUser(pageNum,pageSize);
     }
 }
